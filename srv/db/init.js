@@ -1,0 +1,77 @@
+const Database = require('./config')
+
+
+
+const initDb = {
+
+    async init(){
+
+        const db = await Database()
+
+await db.exec(`CREATE TABLE profile (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    avatar TEXT,
+    monthly_budget INT,
+    days_per_week INT,
+    hours_per_day INT,
+    vacation_per_year INT,
+    hour_value INT
+    )`)
+
+await db.exec(`CREATE TABLE jobs(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    daily_hours INT,
+    total_hours INT,
+    created_at DATETIME
+)`)
+
+await db.run(`INSERT INTO profile(
+    name,
+    avatar,
+    monthly_budget,
+    days_per_week,
+    hours_per_day,
+    vacation_per_year,
+    hour_value
+    ) VALUES(
+        "Matheus",
+        "data:image/jpeg;base64,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",
+        2000,
+        7,
+        8,
+        2,
+        75
+    )`)
+await db.run(`INSERT INTO jobs(
+    name,
+    daily_hours,
+    total_hours,
+    created_at
+) VALUES (
+    "Pizzaria",
+    2,
+    1,
+    1617514376018
+)`)
+
+await db.run(`INSERT INTO jobs(
+    name,
+    daily_hours,
+    total_hours,
+    created_at
+) VALUES (
+    "OneTwo Project",
+    3,
+    47,
+    1617514376018
+)`)
+
+
+
+await db.close()
+
+}}
+
+initDb.init()
