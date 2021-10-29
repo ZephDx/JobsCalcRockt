@@ -11,7 +11,7 @@ module.exports = {
     
             const dayinMill = 1000 * 60 * 60 * 24
     
-            const DiffDay = Math.ceil(timeInMill / dayinMill)
+            const DiffDay = Math.ceilmaraton(timeInMill / dayinMill)
     
             return DiffDay
         
